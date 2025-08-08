@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  display: flex;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+}
+
+.left {
+  position: relative;
+}
+
+img {
+  height: 100dvh;
+  display: block;
+}
+
+.position-abs {
+  position: absolute;
+  width: 100%;
+  top: 120px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+h1 {
+  font-family: "Playwrite MX Guides", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.position-abs img {
+  width: 100px;
+  height: auto;
+}
+
+.right {
+  padding: 40px 0;
+}
+
+.bold {
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+p:first-child {
+  margin-bottom: 20px;
+}
+
+.right > div,
+form {
+  padding: 20px 40px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form > div {
+  display: flex;
+  gap: 40px;
+}
+
+form > div > div {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 0.75rem;
+}
+
+input {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+}
+
+input:focus {
+  border: blue solid 1px;
+  outline: none;
+}
+
+button {
+  padding: 8px 26px;
+  font-size: 0.75rem;
+  background: rgb(90, 117, 90);
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
