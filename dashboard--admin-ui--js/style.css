@@ -1,0 +1,382 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* color */
+  --primary-clr: #1992d4;
+  --secondary-clr: #f0b429;
+  --background-clr: #e2e8f0;
+  --link-clr: #d9d9d9;
+  --active-link-clr: #ffffff;
+
+  /* size */
+  --header-height: 64px;
+  --lower-header: 80px;
+
+  --transition-speed: 400ms;
+}
+
+/* Layout CSS */
+
+body {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "sidebar header header"
+    "sidebar main aside";
+
+  max-height: 100vh;
+  max-height: 100dvh;
+  overflow: hidden;
+  background: var(--background-clr);
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  width: 250px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.header {
+  grid-area: header;
+  height: var(--header-height);
+}
+
+.main {
+  grid-area: main;
+  height: calc(100vh - var(--header-height));
+  overflow-y: scroll;
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.aside {
+  grid-area: aside;
+  height: calc(100vh - var(--header-height));
+  overflow-y: scroll;
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Sidebar CSS */
+
+.sidebar {
+  background: var(--primary-clr);
+  color: var(--link-clr);
+  padding: 20px 10px;
+
+  svg {
+    --svg-size: 20px;
+    display: inline-block;
+    width: var(--svg-size);
+    height: var(--svg-size);
+    fill: var(--link-clr);
+  }
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    span {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  }
+
+  .sidebar-toggle {
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+  }
+
+  .sidebar-toggle svg {
+    --svg-size: 40px;
+  }
+}
+
+nav.links {
+  .primary-links,
+  .secondary-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 40px;
+    padding-left: 8px;
+  }
+
+  li {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  li.active {
+    color: var(--active-link-clr);
+
+    svg {
+      fill: var(--active-link-clr);
+    }
+
+    span {
+      font-weight: 500;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  span {
+    font-size: 1.25rem;
+    font-weight: 400;
+  }
+}
+
+/* Header CSS */
+
+.header {
+  position: relative;
+
+  .upper-header,
+  .lower-header {
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .user-avatar {
+    --profile-size: 40px;
+    display: inline-block;
+    width: var(--profile-size);
+    height: var(--profile-size);
+    border-radius: 50%;
+  }
+
+  .user-avatar.big-version {
+    --profile-size: 60px;
+  }
+
+  .upper-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 20;
+  }
+
+  .lower-header {
+    width: 100%;
+    height: var(--lower-header);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    z-index: 10;
+    transition: transform var(--transition-speed) ease-out;
+    backface-visibility: hidden;
+    will-change: transform;
+  }
+
+  .lower-header.hidden {
+    transform: translateY(-100%);
+  }
+
+  .lower-header.show {
+    transform: translateY(0);
+  }
+}
+
+.upper-header {
+  svg {
+    width: 22px;
+    height: 22px;
+    fill: black;
+  }
+
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .search input {
+    width: 500px;
+    padding: 6px 20px;
+    font-size: 0.75rem;
+    border-radius: 40px;
+    background: var(--background-clr);
+    border: none;
+  }
+
+  .search input:focus {
+    outline: var(--primary-clr) solid 2px;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+.lower-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .profile-summary {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+}
+
+.action-btns {
+  display: flex;
+  gap: 20px;
+
+  button {
+    padding: 8px 25px;
+    border: none;
+    border-radius: 50px;
+    background: var(--primary-clr);
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  button:focus {
+    outline: #ff6b00 solid 2px;
+  }
+}
+
+/* Main CSS */
+main {
+  padding-top: calc(var(--lower-header) + 30px);
+  padding-bottom: 40px;
+
+  .page-title {
+    margin-left: 15px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px 18px;
+  padding: 0 15px;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  padding: 30px 20px;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-content {
+  flex-grow: 1;
+}
+
+.card h2 {
+  font-weight: 500;
+  font-size: 1.175rem;
+  margin-bottom: 6px;
+}
+
+.card-content p {
+  font-size: 1rem;
+  color: rgb(52, 52, 52);
+}
+
+.card::before {
+  content: "";
+  width: 8px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--secondary-clr);
+}
+
+.card-actions {
+  align-self: flex-end;
+}
+
+.card svg {
+  --svg-size: 20px;
+  width: var(--svg-size);
+  height: var(--svg-size);
+  fill: black;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+/* Aside CSS */
+.aside-content {
+  width: 250px;
+  padding-top: calc(var(--lower-header) + 30px);
+  padding-right: 30px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+}
+
+.announcement-container {
+  padding: 10px 20px;
+  background: white;
+  margin-bottom: 40px;
+
+  .announcement {
+    padding: 10px 0;
+    border-bottom: solid black 1px;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  p {
+    font-size: 0.75rem;
+  }
+}
