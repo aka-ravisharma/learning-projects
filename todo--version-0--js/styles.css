@@ -1,0 +1,375 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --body-clr: #333;
+  --card-clr: #ccc;
+  --task-bg: #345;
+  --img-size: 36px;
+  --heading-clr: #444;
+  /* also change svg > circle r = cx - r/2 , cx , cy = 60 /2 */
+  --progress-circle: 60px;
+  --progress-clr: lightgreen;
+  --del-clr: lightcoral;
+  --text-color: #333333;
+  --even-bg: #f4f4f4;
+  --button-color: #28a745;
+  --input-border: #28a745;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--body-clr);
+  color: var(--text-color);
+}
+
+.container {
+  max-width: 500px;
+  width: 100%;
+  height: 90%;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  padding: 30px 20px;
+  font-family: "Open Sans", sans-serif;
+  border: 2px #555 solid;
+  overflow: hidden;
+  position: relative;
+}
+
+
+/* Add Btn */
+.row {
+  display: flex;
+  align-items: center;
+  background: #edeef0;
+  border-radius: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 2s;
+}
+
+.start {
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: yellow;
+  cursor: pointer;
+}
+
+/* Input styling */
+input[type="text"] {
+  padding: 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px 0 0 4px;
+  flex: 1;
+  box-sizing: border-box; 
+  display: none;
+}
+
+/* Input focus styling */
+input[type="text"]:focus,
+input[type="text"]:focus + button {
+  outline: none; 
+  border-color: #218838;
+  box-shadow: 0 0 5px rgba(33, 136, 56, 0.5);
+}
+
+
+/* Button styling */
+button {
+  background-color: var(--button-color);
+  color: #ffffff; /* White text for the button */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  display: none;
+}
+
+/* Additional styling for better UI */
+button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+button:active {
+  background-color: #1e7e34; /* Even darker green on click */
+}
+
+
+/* Header */
+
+.head {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.head img {
+  width: var(--img-size);
+  height: var(--img-size);
+  display: inline-block;
+}
+
+.head h1 {
+  display: inline-block;
+  color: var(--heading-clr);
+}
+
+
+/*  features  */
+
+.features {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.task-circle {
+  position: relative;
+  width: var(--progress-circle);
+  height: var(--progress-circle);
+}
+
+.progress-ring {
+  width: var(--progress-circle);
+  height: var(--progress-circle);
+  transform: rotate(-90deg);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress-ring__circle {
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  stroke: var(--progress-clr);
+  stroke-width: 4px;
+  fill: transparent;
+}
+
+.percentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--progress-clr);
+}
+
+
+
+
+/* 2 */
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+h2 {
+  font-size: 14px;
+  color: var(--del-clr);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 26px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--del-clr);
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+
+
+ul li {
+  list-style: none;
+  padding: 12px 8px;
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  background-color: #e6ffe6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+li.checked {
+  background-color: #c8f0c8;
+}
+
+ul li:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+li.checked:nth-child(odd) {
+  background: #d4f9d4; 
+}
+
+
+ul li > p {
+  display: inline;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+ul li.checked p {
+  color: green;
+  text-decoration: line-through;
+}
+
+.done {
+  display: inline-block;
+  background-color: transparent;
+}
+
+.done_checked {
+  display: inline-block;
+  background-color: #e6ffe6; 
+}
+
+.done_checked svg path {
+  fill: #28a745;
+}
+
+
+li .btn-container {
+  display: flex;
+  gap: 5px;
+  position: absolute;
+  right: 10px;
+  top: 1/2;
+}
+
+  .edit-btn,
+  .delete-btn {
+    display: none;
+  }
+
+  li:hover .edit-btn,
+  li:hover .delete-btn{
+    display: block;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .edit-btn,
+    .delete-btn {
+      display: block;
+    }
+  }
+
+
+li.checked .btn-container .edit-btn {
+  fill: gray;
+}
+
+/* Define the transition for the ::after pseudo-element */
+li::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 4px;
+  background-color: red; 
+  transition: width 10s ease; /* Smooth transition */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2; /* Ensure it’s behind the text */
+}
+
+/* When the item is checked, expand the width */
+li.after.checked::after {
+  width: 100%;
+}
+
+.todo-app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+
+#list-container {
+  height: 100%;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+
+/* Custom scrollbar for WebKit browsers */
+#list-container::-webkit-scrollbar {
+  width: 8px; /* Slim scrollbar width */
+  transform: translateX(20px); /* Scroll 20px to the left */
+}
+
+#list-container::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light background for scrollbar track */
+  border-radius: 8px;
+}
+
+#list-container::-webkit-scrollbar-thumb {
+  background: #28a745; /* Unique green color for the scrollbar thumb */
+  border-radius: 8px;
+  border: 2px solid #d4f9d4; /* Border to blend thumb with the#list-container background */
+  transform: translateX(20px); /* Scroll 20px to the left */
+}
+
+#list-container::-webkit-scrollbar-thumb:hover {
+  background: #218838; /* Darker green on hover */
+  transform: translateX(20px); /* Scroll 20px to the left */
+}
+
